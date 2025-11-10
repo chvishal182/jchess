@@ -1,6 +1,6 @@
 package com.chelv.chess.engine.pieces;
 
-import java.util.List;
+import java.util.Collection;
 
 import com.chelv.chess.engine.Alliance;
 import com.chelv.chess.engine.board.Board;
@@ -16,7 +16,7 @@ public abstract class Piece {
     }
 
     //calculate all the legal moves
-    public abstract List<Move> calculateLegalMoves(final Board board);
+    public abstract Collection<Move> calculateLegalMoves(final Board board);
 
     public Alliance getPieceAlliance(){
         return this.pieceAlliance;
