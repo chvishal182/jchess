@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.chelv.chess.engine.Alliance;
 import com.chelv.chess.engine.board.Board;
+import com.chelv.chess.engine.board.Move;
 
 public abstract class Piece {
     protected final int piecePosition;
@@ -16,4 +17,8 @@ public abstract class Piece {
 
     //calculate all the legal moves
     public abstract List<Move> calculateLegalMoves(final Board board);
+
+    public Alliance getPieceAlliance(){
+        return this.pieceAlliance;
+    }
 }
