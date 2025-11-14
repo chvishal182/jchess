@@ -52,5 +52,5 @@ public abstract class SlidingPiece extends Piece {
 
     public abstract int[] getCandidateMoveOffsets();
 
-    public abstract boolean isColumnExclusion(int currentPosition, int candidateOffset);
+    //public abstract boolean isColumnExclusion(int currentPosition, int candidateOffset);
 }
