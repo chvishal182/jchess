@@ -16,10 +16,25 @@ public final class BoardUtils {
         return column;
     }
 
+    private static boolean[] initRow(int rowNumber) {
+        final boolean[] row = new boolean[NUM_TILES];
+
+        do {
+            row[rowNumber] = true;
+            rowNumber++;
+        } while (rowNumber % NUM_TILES_PER_ROW != 0);
+
+        return row;
+    }
+
     public static final boolean[] FIRST_COLUMN = initColumn(0);
     public static final boolean[] SECOND_COLUMN = initColumn(1);
     public static final boolean[] SEVENTH_COLUMN = initColumn(6);
     public static final boolean[] EIGHTH_COLUMN = initColumn(7);
+
+    public static final boolean[] SECOND_ROW = initRow(8);
+    public static final boolean[] SEVENTH_ROW = initRow(48);
+
 
     private BoardUtils() {
         throw new RuntimeException("You cannot instantiate me!");
