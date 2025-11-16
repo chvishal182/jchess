@@ -15,8 +15,8 @@ import com.google.common.collect.ImmutableList;
 
 public abstract class SlidingPiece extends Piece {
 
-    SlidingPiece(int piecePosition, Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+    SlidingPiece(final PieceType pieceType, int piecePosition, Alliance pieceAlliance) {
+        super(pieceType, piecePosition, pieceAlliance);
     }
 
     @Override

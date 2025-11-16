@@ -11,14 +11,13 @@ import com.chelv.chess.engine.board.Move;
 import com.chelv.chess.engine.board.Move.AttackMove;
 import com.chelv.chess.engine.board.Move.MajorMove;
 import com.google.common.collect.ImmutableList;
-import com.google.errorprone.annotations.Immutable;
 import com.chelv.chess.engine.board.Tile;
 
 public class King extends Piece{
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = {-9, -8, -7, -1, 1, 7, 8, 9};
-    public King(int piecePosition, Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+    public King(final int piecePosition, final Alliance pieceAlliance) {
+        super(PieceType.KING, piecePosition, pieceAlliance);
     }
 
     @Override

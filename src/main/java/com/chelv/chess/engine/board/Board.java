@@ -14,13 +14,17 @@ import com.chelv.chess.engine.pieces.Pawn;
 import com.chelv.chess.engine.pieces.Piece;
 import com.chelv.chess.engine.pieces.Queen;
 import com.chelv.chess.engine.pieces.Rook;
+import com.chelv.chess.engine.player.BlackPlayer;
+import com.chelv.chess.engine.player.Player;
+import com.chelv.chess.engine.player.WhitePlayer;
 import com.google.common.collect.ImmutableList;
 
 public class Board {
 
     private final List<Tile> gameBoard;
     private final Collection<Piece> whitePieces, blackPieces;
-    
+    private final Player whitePlayer, blackPlayer;
+
     private Board(Builder builder){
         this.gameBoard   = createGameBoard(builder);
         this.blackPieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
@@ -28,6 +32,10 @@ public class Board {
 
         final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces),
                                blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
+
+        whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        blackPlayer = new BlackPlayer(this, blackStandardLegalMoves, whiteStandardLegalMoves);
+        
     }
 
     @Override
@@ -44,6 +52,21 @@ public class Board {
         return builder.toString();
     }
 
+    public Collection<Piece> getBlackPieces(){
+        return this.blackPieces;
+    } 
+
+    public Collection<Piece> getWhitePieces(){
+        return this.whitePieces;
+    }
+
+    public Player getWhitePlayer() {
+        return this.whitePlayer;
+    }
+
+    public Player getBlackPlayer() {
+        return this.blackPlayer;
+    }
 
     private Collection<Move> calculateLegalMoves(Collection<Piece> pieces) {
        final List<Move> legalMoves = new ArrayList<>();

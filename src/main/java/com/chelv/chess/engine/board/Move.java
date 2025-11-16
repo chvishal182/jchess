@@ -31,4 +31,8 @@ public abstract class Move {
             this.attackedPiece = attackedPiece;
         }
     }
+
+    public Integer getDestinationCoordinate() {
+        return this.destinationCoordinate;
+    }
 }

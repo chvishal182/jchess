@@ -18,7 +18,7 @@ public class Pawn extends Piece {
     private final int polarity = this.pieceAlliance.getDirection();
 
     public Pawn(final int piecePosition, final Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+        super(PieceType.PAWN, piecePosition, pieceAlliance);
     }
 
     @Override
