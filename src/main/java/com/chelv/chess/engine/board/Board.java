@@ -23,7 +23,7 @@ public class Board {
 
     private final List<Tile> gameBoard;
     private final Collection<Piece> whitePieces, blackPieces;
-    private final Player whitePlayer, blackPlayer;
+    private final Player currentPlayer, whitePlayer, blackPlayer;
 
     private Board(Builder builder){
         this.gameBoard   = createGameBoard(builder);
@@ -33,8 +33,9 @@ public class Board {
         final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces),
                                blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
 
-        whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
-        blackPlayer = new BlackPlayer(this, blackStandardLegalMoves, whiteStandardLegalMoves);
+        currentPlayer = null; 
+        whitePlayer   = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        blackPlayer   =  new BlackPlayer(this, blackStandardLegalMoves, whiteStandardLegalMoves);
         
     }
 
@@ -58,6 +59,10 @@ public class Board {
 
     public Collection<Piece> getWhitePieces(){
         return this.whitePieces;
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
     }
 
     public Player getWhitePlayer() {

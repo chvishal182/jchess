@@ -20,6 +20,12 @@ public abstract class Move {
             super(board, movedPiece, destinationCoordinate);
         }
 
+        @Override
+        public Board execute() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        }
+
     }
 
     public static final class AttackMove extends Move {
@@ -30,9 +36,17 @@ public abstract class Move {
             super(board, movedPiece, destinationCoordinate);
             this.attackedPiece = attackedPiece;
         }
+
+        @Override
+        public Board execute() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        }
     }
 
     public Integer getDestinationCoordinate() {
         return this.destinationCoordinate;
     }
+
+    public abstract Board execute();
 }

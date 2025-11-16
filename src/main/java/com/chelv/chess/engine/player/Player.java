@@ -15,8 +15,12 @@ public abstract class Player {
 
     protected final Board board;
     protected final King playerKing;
+    
+
     private final boolean isInCheck;
     protected final Collection<Move> legalMoves;
+
+    
 
     Player(Board board,
             final Collection<Move> legaMoves,
@@ -26,6 +30,13 @@ public abstract class Player {
         this.legalMoves = legaMoves;
         this.isInCheck  = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentMoves).isEmpty(); 
 
+    }
+
+    public Collection<Move> getLegalMoves() {
+        return legalMoves;
+    }
+    public King getPlayerKing() {
+        return playerKing;
     }
 
     private static Collection<Move> calculateAttacksOnTile(Integer piecePosition, Collection<Move> moves) {
@@ -66,6 +77,29 @@ public abstract class Player {
         return !this.isInCheck && !hasEscapeMoves();
     }
 
+    // work to do
+    public boolean isCastled(){
+        return false;
+    }
+
+    public MoveTransition makeMove(final Move move){
+        if(!isMoveLegal(move)){
+            return new MoveTransition(this.board, move, MoveStatus.ILLEGAL_MOVE);
+        }
+
+        final Board transitionBoard = move.execute();
+        final Collection<Move> kingAttacks = Player.calculateAttacksOnTile
+                                            ( transitionBoard.getCurrentPlayer().getOpponent().getPlayerKing().getPiecePosition(), 
+                                              transitionBoard.getCurrentPlayer().getLegalMoves()
+                                            );
+        
+        
+        if(!kingAttacks.isEmpty()){
+            return new MoveTransition(this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);
+        }
+        return new MoveTransition(transitionBoard, move, MoveStatus.DONE);
+    }
+
     /*
      * We are going to create an imaginary board
      * with all the legalMoves we have like studing the board
@@ -83,14 +117,6 @@ public abstract class Player {
         return false;
     }
 
-    // work to do
-    public boolean isCastled(){
-        return false;
-    }
-
-    public MoveTransition makeMove(final Move move){
-        return null;
-    }
 
     public abstract Collection<Piece> getActivePieces();
 
